@@ -19,3 +19,6 @@ function analyzeScan() {
     resultMessage.classList.add('text-green-600');
   }, 2000);
 }
+
+
+

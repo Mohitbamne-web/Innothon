@@ -1,4 +1,4 @@
-/* Smooth scrolling for anchor links */
+
 html {
     scroll-behavior: smooth;
   }
@@ -81,4 +81,23 @@ html {
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
+  @keyframes bounce {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  @keyframes bounce {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  @keyframes bounce {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  .about.marquee {
+    animation: bounce 5s ease-in-out infinite alternate;
+  }
+  
   
