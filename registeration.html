@@ -7,15 +7,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-
   <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-2xl">
     <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Patient Registration</h2>
-
     <form id="multiStepForm">
       <!-- Step 1: Personal Info -->
       <div class="step" id="step1">
         <h3 class="text-lg font-semibold mb-4">Step 1: Personal Information</h3>
-        <div class="space-y-4">
+        <div class="flex flex-col gap-4">
           <input type="text" id="name" placeholder="Full Name" class="input-field" required>
           <input type="tel" id="phone" placeholder="Phone Number" class="input-field" required>
           <input type="text" id="address" placeholder="Address" class="input-field" required>
@@ -31,11 +29,11 @@
       <!-- Step 2: Medical History -->
       <div class="step hidden" id="step2">
         <h3 class="text-lg font-semibold mb-4">Step 2: Medical History</h3>
-        <div class="space-y-4">
-          <textarea id="allergies" rows="2" placeholder="Allergies (e.g., penicillin, nuts)" class="input-field" required></textarea>
+        <div class="flex flex-col gap-4">
+          <textarea id="allergies" rows="2" placeholder="Allergies" class="input-field" required></textarea>
           <textarea id="medications" rows="2" placeholder="Current Medications" class="input-field" required></textarea>
           <textarea id="surgeries" rows="2" placeholder="Past Surgeries" class="input-field" required></textarea>
-          <textarea id="chronicIllnesses" rows="2" placeholder="Chronic Illnesses (e.g., diabetes)" class="input-field" required></textarea>
+          <textarea id="chronicIllnesses" rows="2" placeholder="Chronic Illnesses" class="input-field" required></textarea>
           <textarea id="familyHistory" rows="2" placeholder="Family Medical History" class="input-field" required></textarea>
           <select id="bloodType" class="input-field" required>
             <option value="">Select Blood Type</option>
@@ -55,33 +53,27 @@
         </div>
       </div>
 
-      <!-- Step 3: Financial & Socio-Economic Info -->
+      <!-- Step 3: Financial Info -->
       <div class="step hidden" id="step3">
         <h3 class="text-lg font-semibold mb-4">Step 3: Financial & Socio-Economic Information</h3>
-        <div class="space-y-4">
-
+        <div class="flex flex-col gap-4">
           <select id="povertyLine" class="input-field" required>
             <option value="">Poverty Line Status</option>
             <option value="Above Poverty Line">Above Poverty Line</option>
             <option value="Below Poverty Line">Below Poverty Line</option>
           </select>
-
           <select id="employmentSector" class="input-field" required>
             <option value="">Employment Sector</option>
             <option value="Organised">Organised Sector</option>
             <option value="Unorganised">Unorganised Sector</option>
           </select>
-
           <select id="schemeRegistered" class="input-field" required onchange="toggleSchemeName(this)">
             <option value="">Registered in Govt Medical Scheme?</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
-
           <input type="text" id="schemeName" placeholder="Enter Scheme Name" class="input-field hidden" />
-
           <input type="number" id="income" placeholder="Annual Income" class="input-field" required>
-
           <select id="areaType" class="input-field" required>
             <option value="">Select Area Type</option>
             <option value="Rural">Rural</option>
@@ -94,7 +86,6 @@
         </div>
       </div>
     </form>
-
     <p id="successMsg" class="text-green-600 mt-6 text-center hidden">Registration successful!</p>
   </div>
 
@@ -112,25 +103,21 @@
 
   <script>
     let currentStep = 1;
-
     function showStep(step) {
       document.querySelectorAll('.step').forEach((el, i) => {
         el.classList.toggle('hidden', i !== step - 1);
       });
     }
-
     function nextStep(step) {
       if (validateStep(step)) {
         currentStep++;
         showStep(currentStep);
       }
     }
-
     function prevStep(step) {
       currentStep--;
       showStep(currentStep);
     }
-
     function validateStep(step) {
       const stepEl = document.getElementById(`step${step}`);
       const inputs = stepEl.querySelectorAll("input, textarea, select");
@@ -142,7 +129,6 @@
       }
       return true;
     }
-
     function toggleSchemeName(select) {
       const schemeInput = document.getElementById('schemeName');
       if (select.value === 'Yes') {
@@ -153,29 +139,22 @@
         schemeInput.removeAttribute('required');
       }
     }
-
     document.getElementById("multiStepForm").addEventListener("submit", function (e) {
       e.preventDefault();
-
       if (validateStep(3)) {
         const data = {
-          // Step 1
           name: document.getElementById('name').value,
           phone: document.getElementById('phone').value,
           address: document.getElementById('address').value,
           state: document.getElementById('state').value,
           email: document.getElementById('email').value,
           password: document.getElementById('password').value,
-
-          // Step 2
           allergies: document.getElementById('allergies').value,
           medications: document.getElementById('medications').value,
           surgeries: document.getElementById('surgeries').value,
           chronicIllnesses: document.getElementById('chronicIllnesses').value,
           familyHistory: document.getElementById('familyHistory').value,
           bloodType: document.getElementById('bloodType').value,
-
-          // Step 3
           povertyLine: document.getElementById('povertyLine').value,
           employmentSector: document.getElementById('employmentSector').value,
           schemeRegistered: document.getElementById('schemeRegistered').value,
@@ -183,7 +162,6 @@
           income: document.getElementById('income').value,
           areaType: document.getElementById('areaType').value,
         };
-
         console.log("Final Registration Data:", data);
         document.getElementById("multiStepForm").reset();
         showStep(1);
@@ -195,6 +173,5 @@
       }
     });
   </script>
-
 </body>
 </html>
