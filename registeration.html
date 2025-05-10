@@ -34,7 +34,7 @@
         <label>Password</label>
         <input type="password" name="password" required>
 
-        <button type="button" onclick="nextStep(2)">Submit</button>
+        <button type="button" onclick="nextStep(2)">Next</button>
       </div>
 
       <!-- Step 2 -->
@@ -57,45 +57,6 @@
         <input type="text" name="bloodType" required>
 
         <button type="button" onclick="nextStep(1)">Back</button>
-        <button type="button" onclick="nextStep(3)">Next</button>
-      </div>
-
-      <!-- Step 3 -->
-      <div id="step3" class="hidden">
-        <h2>Step 3: Financial and Social Info</h2>
-
-        <label>Are you above or below the poverty line?</label>
-        <select name="povertyLine" required>
-          <option value="">--Select--</option>
-          <option value="above">Above</option>
-          <option value="below">Below</option>
-        </select>
-
-        <label>Employment Sector</label>
-        <select name="employment" required>
-          <option value="">--Select--</option>
-          <option value="organised">Organised</option>
-          <option value="unorganised">Unorganised</option>
-        </select>
-
-        <label>Registered in Government Medical Scheme?</label>
-        <select name="govScheme" required>
-          <option value="">--Select--</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-
-        <label>Annual Income</label>
-        <input type="number" name="income" required>
-
-        <label>Living Area</label>
-        <select name="area" required>
-          <option value="">--Select--</option>
-          <option value="rural">Rural</option>
-          <option value="urban">Urban</option>
-        </select>
-
-        <button type="button" onclick="nextStep(2)">Back</button>
         <button type="submit">Submit</button>
       </div>
     </form>

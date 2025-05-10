@@ -18,17 +18,8 @@ function analyzeScan() {
     resultMessage.classList.remove('text-yellow-600');
     resultMessage.classList.add('text-green-600');
   }, 2000);
+
   
-  fetch('http://localhost:5000/api/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(patientData)
-  })
-  .then(res => res.json())
-  .then(data => {
-    alert(data.message);
-    // Redirect to chatbot or dashboard
-  });
   
 }
 

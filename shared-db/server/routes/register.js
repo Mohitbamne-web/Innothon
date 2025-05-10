@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Patient = require('../../shared-db/models/Patient');
+const Patient = require('../../models/patient');
 
 router.post('/', async (req, res) => {
   try {
