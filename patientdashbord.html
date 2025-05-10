@@ -3,30 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Patient Dashboard</title>
+  <title>Patient Dashboard - MediScan AI</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    }
+    .dashboard-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    }
+    .info-item {
+      transition: all 0.3s ease;
+    }
+    .info-item:hover {
+      transform: translateX(10px);
+      background-color: #f8fafc;
+    }
+    .section-title {
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: #3b82f6;
+      border-radius: 2px;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 min-h-screen p-6">
-  <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md">
-    <h1 class="text-3xl font-bold mb-6 text-center">Patient Dashboard</h1>
+<body class="min-h-screen p-6">
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow-lg mb-8 rounded-lg">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-blue-600">MediScan AI</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-blue-600 transition-colors">
+            Home
+          </button>
+          <button onclick="window.location.href='registeration.html'" class="text-gray-600 hover:text-blue-600 transition-colors">
+            Register
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-    <div class="space-y-4">
-      <div><strong>Full Name:</strong> <span id="fullName"></span></div>
-      <div><strong>Phone Number:</strong> <span id="phone"></span></div>
-      <div><strong>Address:</strong> <span id="address"></span></div>
-      <div><strong>State:</strong> <span id="state"></span></div>
-      <div><strong>Email:</strong> <span id="email"></span></div>
-      <div><strong>Password:</strong> <span id="password"></span></div>
-      <div><strong>Blood Type:</strong> <span id="bloodType"></span></div>
-      <div><strong>Chronic Conditions:</strong> <span id="chronicConditions"></span></div>
-      <div><strong>Surgeries:</strong> <span id="surgeries"></span></div>
-      <div><strong>Allergies:</strong> <span id="allergies"></span></div>
-      <div><strong>Medications:</strong> <span id="medications"></span></div>
-      <div><strong>Poverty Line:</strong> <span id="povertyLine"></span></div>
-      <div><strong>Employment Sector:</strong> <span id="employment"></span></div>
-      <div><strong>Government Medical Scheme:</strong> <span id="govScheme"></span></div>
-      <div><strong>Annual Income:</strong> <span id="income"></span></div>
-      <div><strong>Area Type:</strong> <span id="area"></span></div>
+  <!-- Main Dashboard Content -->
+  <div class="max-w-4xl mx-auto">
+    <div class="dashboard-card rounded-xl p-8">
+      <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Patient Dashboard</h1>
+
+      <!-- Personal Information Section -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800 section-title">Personal Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">Full Name</div>
+            <div id="fullName" class="text-lg font-medium text-gray-800"></div>
+          </div>
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">Phone Number</div>
+            <div id="phone" class="text-lg font-medium text-gray-800"></div>
+          </div>
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">Address</div>
+            <div id="address" class="text-lg font-medium text-gray-800"></div>
+          </div>
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">State</div>
+            <div id="state" class="text-lg font-medium text-gray-800"></div>
+          </div>
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">Email</div>
+            <div id="email" class="text-lg font-medium text-gray-800"></div>
+          </div>
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">Blood Type</div>
+            <div id="bloodType" class="text-lg font-medium text-gray-800"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medical History Section -->
+      <div>
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800 section-title">Medical History</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">Chronic Conditions</div>
+            <div id="chronicConditions" class="text-lg font-medium text-gray-800"></div>
+          </div>
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">Previous Surgeries</div>
+            <div id="surgeries" class="text-lg font-medium text-gray-800"></div>
+          </div>
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">Allergies</div>
+            <div id="allergies" class="text-lg font-medium text-gray-800"></div>
+          </div>
+          <div class="info-item p-4 rounded-lg">
+            <div class="text-sm text-gray-500 mb-1">Current Medications</div>
+            <div id="medications" class="text-lg font-medium text-gray-800"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -34,34 +125,30 @@
     const userId = localStorage.getItem("user_id");
     if (!userId) {
       alert("No user found. Redirecting to registration page.");
-      window.location.href = "/register.html";
+      window.location.href = "registeration.html";
     }
 
     async function loadPatientData() {
       try {
-        const res = await fetch(`http://localhost:3000/patient/${userId}`);
+        const res = await fetch(`http://localhost:5001/api/patient/${userId}`);
         const data = await res.json();
 
-        document.getElementById("fullName").textContent = data.fullName || "";
-        document.getElementById("phone").textContent = data.phone || "";
-        document.getElementById("address").textContent = data.address || "";
-        document.getElementById("state").textContent = data.state || "";
-        document.getElementById("email").textContent = data.email || "";
-        document.getElementById("password").textContent = data.password || "";
-        document.getElementById("bloodType").textContent = data.bloodType || "";
+        // Personal Information
+        document.getElementById("fullName").textContent = data.fullName || "Not provided";
+        document.getElementById("phone").textContent = data.phone || "Not provided";
+        document.getElementById("address").textContent = data.address || "Not provided";
+        document.getElementById("state").textContent = data.state || "Not provided";
+        document.getElementById("email").textContent = data.email || "Not provided";
+        document.getElementById("bloodType").textContent = data.bloodType || "Not provided";
 
-        document.getElementById("chronicConditions").textContent = data.medicalHistory?.chronicConditions || "";
-        document.getElementById("surgeries").textContent = data.medicalHistory?.surgeries || "";
-        document.getElementById("allergies").textContent = data.medicalHistory?.allergies || "";
-        document.getElementById("medications").textContent = data.medicalHistory?.medications || "";
-
-        document.getElementById("povertyLine").textContent = data.financialInfo?.povertyLine || "";
-        document.getElementById("employment").textContent = data.financialInfo?.employment || "";
-        document.getElementById("govScheme").textContent = data.financialInfo?.govScheme || "";
-        document.getElementById("income").textContent = data.financialInfo?.income || "";
-        document.getElementById("area").textContent = data.financialInfo?.area || "";
+        // Medical History
+        document.getElementById("chronicConditions").textContent = data.medicalHistory?.chronicConditions || "None";
+        document.getElementById("surgeries").textContent = data.medicalHistory?.surgeries || "None";
+        document.getElementById("allergies").textContent = data.medicalHistory?.allergies || "None";
+        document.getElementById("medications").textContent = data.medicalHistory?.medications || "None";
       } catch (err) {
         console.error("Failed to fetch patient data:", err);
+        alert("Failed to load patient data. Please try again later.");
       }
     }
 
