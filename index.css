@@ -100,4 +100,6 @@ html {
     animation: bounce 5s ease-in-out infinite alternate;
   }
   
-  
+  .about.marquee {
+    animation: bounce 5s ease-in-out infinite alternate;
+  }
