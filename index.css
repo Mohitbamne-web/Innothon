@@ -81,23 +81,13 @@ html {
     100% { transform: translateX(-50%); }
   }
   
-  @keyframes bounce {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+
+  .marquee {
+    animation: bounce 1s ease-in-out infinite alternate;
+    animation: scroll-left 5s linear infinite;
+    
   }
-  
-  @keyframes bounce {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  
-  .about.marquee {
-    animation: bounce 5s ease-in-out infinite alternate;
-  }
-  
-  .about.marquee {
-    animation: bounce 5s ease-in-out infinite alternate;
-  }
+ 
   footer {
     transition: all 0.3s ease;
   }
