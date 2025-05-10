@@ -1,0 +1,66 @@
+body {
+    padding: auto;
+    font-family: Arial, sans-serif;
+    border-image: auto;
+    background: url('RB.jpg')no-repeat;
+    background-size: cover;
+    
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 100px;
+    background-color: rgb(241 245 249);
+    padding:100px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    height: 500px;
+    background-color: transparent;
+    backdrop-filter: blur(30px);
+    }
+  
+  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    margin-left:250px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4285f4;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  button:hover {
+    background-color: #3367d6;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  input.border-red-500 {
+    border-color: red;
+  }
+  
