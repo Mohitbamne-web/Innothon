@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md">
+    <h1 class="text-3xl font-bold mb-6 text-center">Patient Dashboard</h1>
+
+    <div class="space-y-4">
+      <div><strong>Full Name:</strong> <span id="fullName"></span></div>
+      <div><strong>Phone Number:</strong> <span id="phone"></span></div>
+      <div><strong>Address:</strong> <span id="address"></span></div>
+      <div><strong>State:</strong> <span id="state"></span></div>
+      <div><strong>Email:</strong> <span id="email"></span></div>
+      <div><strong>Password:</strong> <span id="password"></span></div>
+      <div><strong>Blood Type:</strong> <span id="bloodType"></span></div>
+      <div><strong>Chronic Conditions:</strong> <span id="chronicConditions"></span></div>
+      <div><strong>Surgeries:</strong> <span id="surgeries"></span></div>
+      <div><strong>Allergies:</strong> <span id="allergies"></span></div>
+      <div><strong>Medications:</strong> <span id="medications"></span></div>
+      <div><strong>Poverty Line:</strong> <span id="povertyLine"></span></div>
+      <div><strong>Employment Sector:</strong> <span id="employment"></span></div>
+      <div><strong>Government Medical Scheme:</strong> <span id="govScheme"></span></div>
+      <div><strong>Annual Income:</strong> <span id="income"></span></div>
+      <div><strong>Area Type:</strong> <span id="area"></span></div>
+    </div>
+  </div>
+
+  <script>
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+      alert("No user found. Redirecting to registration page.");
+      window.location.href = "/register.html";
+    }
+
+    async function loadPatientData() {
+      try {
+        const res = await fetch(`http://localhost:3000/patient/${userId}`);
+        const data = await res.json();
+
+        document.getElementById("fullName").textContent = data.fullName || "";
+        document.getElementById("phone").textContent = data.phone || "";
+        document.getElementById("address").textContent = data.address || "";
+        document.getElementById("state").textContent = data.state || "";
+        document.getElementById("email").textContent = data.email || "";
+        document.getElementById("password").textContent = data.password || "";
+        document.getElementById("bloodType").textContent = data.bloodType || "";
+
+        document.getElementById("chronicConditions").textContent = data.medicalHistory?.chronicConditions || "";
+        document.getElementById("surgeries").textContent = data.medicalHistory?.surgeries || "";
+        document.getElementById("allergies").textContent = data.medicalHistory?.allergies || "";
+        document.getElementById("medications").textContent = data.medicalHistory?.medications || "";
+
+        document.getElementById("povertyLine").textContent = data.financialInfo?.povertyLine || "";
+        document.getElementById("employment").textContent = data.financialInfo?.employment || "";
+        document.getElementById("govScheme").textContent = data.financialInfo?.govScheme || "";
+        document.getElementById("income").textContent = data.financialInfo?.income || "";
+        document.getElementById("area").textContent = data.financialInfo?.area || "";
+      } catch (err) {
+        console.error("Failed to fetch patient data:", err);
+      }
+    }
+
+    loadPatientData();
+  </script>
+</body>
+</html>
