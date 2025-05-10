@@ -3,7 +3,6 @@ html {
     scroll-behavior: smooth;
   }
   
-  /* Navbar link hover underline */
   nav ul li a {
     position: relative;
     transition: color 0.3s ease;
@@ -14,7 +13,7 @@ html {
     position: absolute;
     width: 0%;
     height: 2px;
-    background-color: #2563eb; /* Tailwind blue-600 */
+    background-color: #2563eb; 
     bottom: -4px;
     left: 0;
     transition: width 0.3s;
@@ -24,21 +23,19 @@ html {
     width: 100%;
   }
   
-  /* Hero button glow on hover */
+  
   a.bg-blue-600:hover {
     box-shadow: 0 0 10px #2563ebaa;
     transform: scale(1.05);
     transition: all 0.3s ease;
   }
   
-  /* Features card hover effect */
   section#features .shadow:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
   }
   
-  /* File input styling */
   #scanInput {
     border: 2px dashed #2563eb;
     background-color: #f0f4ff;
@@ -50,21 +47,19 @@ html {
     background-color: #e0ecff;
   }
   
-  /* Disabled button styling */
   button:disabled {
-    background-color: #93c5fd; /* Tailwind blue-300 */
+    background-color: #93c5fd; 
     cursor: not-allowed;
     opacity: 0.7;
   }
   
-  /* Footer hover (optional fun effect) */
+  
   footer:hover {
     background-color: #f9fafb;
     transition: background-color 0.3s ease;
   }
 
   
-/* Optional extra styling for the custom footer box */
 .custom-footer-box {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
