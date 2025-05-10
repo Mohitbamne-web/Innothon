@@ -71,7 +71,7 @@ html {
   
   .custom-footer-box:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(192, 126, 126, 0.1);
   }
   .custom-footer-box {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -103,3 +103,13 @@ html {
   .about.marquee {
     animation: bounce 5s ease-in-out infinite alternate;
   }
+  footer {
+    transition: all 0.3s ease;
+  }
+  
+  footer:hover {
+    background-color: #f0f9ff; 
+    color: #0057ff;          
+    transform: scale(1.02); 
+  }
+  
