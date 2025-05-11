@@ -11,23 +11,39 @@
 
 <body class="bg-gray-100 text-gray-800">
   <!-- Navbar -->
-  <nav class="bg-white shadow p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-xl font-bold text-blue-600">MediScan AI</h1>
-      <ul class="flex space-x-6">
-        <li><a href="#about" class="hover:text-blue-600">About</a></li>
-        <li><a href="#features" class="hover:text-blue-600">Features</a></li>
-        <li><a href="#sign-up" class="hover:text-blue-600">Sign-up</a></li>
-        <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
-      </ul>
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between h-16">
+            <div class="flex">
+                <div class="flex-shrink-0 flex items-center">
+                    <img class="h-8 w-auto" src="assets/logo.png" alt="MediScan AI">
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Home
+                    </a>
+                    <a href="#features" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Features
+                    </a>
+                    <a href="#contact" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Contact
+                    </a>
+                </div>
+            </div>
+            <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                <button onclick="window.location.href='patient-login.html'" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">
+                    Patient Dashboard
+                </button>
+            </div>
+        </div>
     </div>
-  </nav>
+</nav>
 
   <!-- Hero Section -->
   <section class="bg-blue-50 py-20 text-center">
     <h2 class="text-4xl font-bold mb-4">Detect Early Signs of Diseases Like Cancer</h2>
     <p class="text-lg mb-8">Using advanced deep learning models to help doctors and patients make quicker decisions.</p>
-    <a href="registeration.html" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700">Get Started</a>
+    <a href="register.html" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700">Get Started</a>
   </section>
 
   

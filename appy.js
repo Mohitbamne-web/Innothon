@@ -54,9 +54,15 @@ document.getElementById('registrationForm').addEventListener('submit', function(
   })
   .then(res => res.json())
   .then(data => {
-    alert(data.message);
-    // Redirect to patient dashboard on successful registration
-    window.location.href = 'patientdashbord.html';
+    if (data.userId) {
+      // Store the user ID in localStorage
+      localStorage.setItem('user_id', data.userId);
+      alert(data.message);
+      // Redirect to patient dashboard on successful registration
+      window.location.href = 'patientdashbord.html';
+    } else {
+      throw new Error('No user ID received from server');
+    }
   })
   .catch(error => {
     console.error('Registration error:', error);

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - MediScan AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="assets/logo.png" alt="MediScan AI">
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button onclick="window.location.href='chatbot.html'" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 mr-4">
+                        Chat with AI
+                    </button>
+                    <button onclick="logout()" class="text-gray-500 hover:text-gray-700">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="px-4 py-6 sm:px-0">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Profile Card -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Profile Information</h3>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-500">Name: <span id="userName" class="text-gray-900"></span></p>
+                            <p class="text-sm text-gray-500">Email: <span id="userEmail" class="text-gray-900"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medical History Card -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Medical History</h3>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-500">Past Conditions: <span id="pastConditions" class="text-gray-900"></span></p>
+                            <p class="text-sm text-gray-500">Allergies: <span id="allergies" class="text-gray-900"></span></p>
+                            <p class="text-sm text-gray-500">Medications: <span id="medications" class="text-gray-900"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Scans Card -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Scans</h3>
+                        <div id="recentScans" class="mt-4">
+                            <!-- Scans will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
+            window.location.href = 'patient-login.html';
+        }
+
+        // Fetch user data
+        async function fetchUserData() {
+            try {
+                const response = await fetch(`http://localhost:5001/api/user/${userId}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Update profile information
+                    document.getElementById('userName').textContent = data.name || 'Not provided';
+                    document.getElementById('userEmail').textContent = data.email;
+                    
+                    // Update medical history
+                    document.getElementById('pastConditions').textContent = data.pastConditions?.join(', ') || 'None';
+                    document.getElementById('allergies').textContent = data.allergies?.join(', ') || 'None';
+                    document.getElementById('medications').textContent = data.medications?.join(', ') || 'None';
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('userId');
+            window.location.href = 'index.html';
+        }
+
+        // Fetch user data when page loads
+        fetchUserData();
+    </script>
+</body>
+</html> 
