@@ -56,10 +56,12 @@ document.getElementById('registrationForm').addEventListener('submit', function(
   .then(data => {
     if (data.userId) {
       // Store the user ID in localStorage
-      localStorage.setItem('user_id', data.userId);
+      localStorage.setItem('userId', data.userId);
+      localStorage.setItem('userName', formData.get('fullName'));
+      localStorage.setItem('userEmail', formData.get('email'));
       alert(data.message);
-      // Redirect to patient dashboard on successful registration
-      window.location.href = 'patientdashbord.html';
+      // Redirect to chatbot on successful registration
+      window.location.href = 'chatbot.html';
     } else {
       throw new Error('No user ID received from server');
     }

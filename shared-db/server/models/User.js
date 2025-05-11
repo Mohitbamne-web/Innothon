@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+    // Personal Information
+    name: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -10,30 +15,36 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
+    phone: {
         type: String,
         required: true
     },
-    // Medical history fields
-    pastConditions: [{
+    address: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    // Medical Information
+    bloodType: {
+        type: String,
+        required: true,
+        enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+    },
+    chronicConditions: [{
         type: String
     }],
     allergies: [{
         type: String
     }],
     medications: [{
-        name: String,
-        dosage: String,
-        frequency: String
+        type: String
     }],
-    familyHistory: [{
-        condition: String,
-        relation: String
+    surgeries: [{
+        type: String
     }],
-    // Additional fields
-    dateOfBirth: Date,
-    gender: String,
-    bloodType: String,
     createdAt: {
         type: Date,
         default: Date.now

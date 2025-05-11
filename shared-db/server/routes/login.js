@@ -1,30 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const Patient = require('../../models/patient');
+const bcrypt = require('bcryptjs');
+const Patient = require('../models/patient');
 
 router.post('/', async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Find patient by email
+        // Check if patient exists
         const patient = await Patient.findOne({ email });
-
         if (!patient) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+            return res.status(400).json({ message: 'Invalid email or password' });
         }
 
-        // Check password (Note: In a real application, you should use proper password hashing)
-        if (patient.password !== password) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+        // Verify password
+        const isMatch = await bcrypt.compare(password, patient.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid email or password' });
         }
 
-        // Return success with user ID
+        // Return patient data (excluding password)
         res.json({
             message: 'Login successful',
-            userId: patient._id
+            userId: patient._id,
+            name: patient.fullName,
+            email: patient.email
         });
-    } catch (error) {
-        console.error('Login error:', error);
+
+    } catch (err) {
+        console.error('Login error:', err);
         res.status(500).json({ message: 'Server error' });
     }
 });

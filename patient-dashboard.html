@@ -5,103 +5,232 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Dashboard - MediScan AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            transition: transform 0.3s ease;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-item {
+            transition: all 0.3s ease;
+        }
+        .info-item:hover {
+            transform: translateX(10px);
+            background-color: #f8fafc;
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+        #verificationForm {
+            display: none;
+        }
+        #dashboardContent {
+            display: none;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <nav class="bg-white shadow-lg">
+<body class="min-h-screen p-6">
+    <nav class="bg-white shadow-lg mb-8 rounded-lg">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
-                        <img class="h-8 w-auto" src="assets/logo.png" alt="MediScan AI">
-                    </div>
-                </div>
+            <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <button onclick="window.location.href='chatbot.html'" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 mr-4">
-                        Chat with AI
+                    <img class="h-8 w-auto mr-4" src="assets/logo.png" alt="MediScan AI">
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        Home
                     </button>
-                    <button onclick="logout()" class="text-gray-500 hover:text-gray-700">
-                        Logout
+                    <button onclick="window.location.href='chatbot.html'" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors">
+                        Chat with AI
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div class="px-4 py-6 sm:px-0">
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <!-- Profile Card -->
-                <div class="bg-white overflow-hidden shadow rounded-lg">
-                    <div class="px-4 py-5 sm:p-6">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">Profile Information</h3>
-                        <div class="mt-4">
-                            <p class="text-sm text-gray-500">Name: <span id="userName" class="text-gray-900"></span></p>
-                            <p class="text-sm text-gray-500">Email: <span id="userEmail" class="text-gray-900"></span></p>
-                        </div>
+    <!-- Verification Form -->
+    <div id="verificationForm" class="max-w-md mx-auto">
+        <div class="dashboard-card rounded-xl p-6">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800 text-center">Access Dashboard</h2>
+            <form id="accessForm" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Access Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div id="dashboardContent" class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <!-- Personal Information Card -->
+            <div class="dashboard-card rounded-xl p-6">
+                <h3 class="text-xl font-semibold mb-6 text-gray-800 section-title">Personal Information</h3>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Full Name</p>
+                        <p id="userName" class="text-base text-gray-900"></p>
+                    </div>
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Email</p>
+                        <p id="userEmail" class="text-base text-gray-900"></p>
+                    </div>
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Phone</p>
+                        <p id="userPhone" class="text-base text-gray-900"></p>
+                    </div>
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Address</p>
+                        <p id="userAddress" class="text-base text-gray-900"></p>
+                    </div>
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">State</p>
+                        <p id="userState" class="text-base text-gray-900"></p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Medical History Card -->
-                <div class="bg-white overflow-hidden shadow rounded-lg">
-                    <div class="px-4 py-5 sm:p-6">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">Medical History</h3>
-                        <div class="mt-4">
-                            <p class="text-sm text-gray-500">Past Conditions: <span id="pastConditions" class="text-gray-900"></span></p>
-                            <p class="text-sm text-gray-500">Allergies: <span id="allergies" class="text-gray-900"></span></p>
-                            <p class="text-sm text-gray-500">Medications: <span id="medications" class="text-gray-900"></span></p>
-                        </div>
+            <!-- Medical Information Card -->
+            <div class="dashboard-card rounded-xl p-6">
+                <h3 class="text-xl font-semibold mb-6 text-gray-800 section-title">Medical Information</h3>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Blood Type</p>
+                        <p id="userBloodType" class="text-base text-gray-900"></p>
+                    </div>
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Chronic Conditions</p>
+                        <p id="userChronicConditions" class="text-base text-gray-900"></p>
+                    </div>
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Allergies</p>
+                        <p id="userAllergies" class="text-base text-gray-900"></p>
+                    </div>
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Current Medications</p>
+                        <p id="userMedications" class="text-base text-gray-900"></p>
+                    </div>
+                    <div class="info-item p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Previous Surgeries</p>
+                        <p id="userSurgeries" class="text-base text-gray-900"></p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Recent Scans Card -->
-                <div class="bg-white overflow-hidden shadow rounded-lg">
-                    <div class="px-4 py-5 sm:p-6">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Scans</h3>
-                        <div id="recentScans" class="mt-4">
-                            <!-- Scans will be populated here -->
-                        </div>
-                    </div>
+            <!-- Recent Scans Card -->
+            <div class="dashboard-card rounded-xl p-6 sm:col-span-2">
+                <h3 class="text-xl font-semibold mb-6 text-gray-800 section-title">Recent Scans</h3>
+                <div id="recentScans" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Scans will be populated here -->
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Check if user is logged in
-        const userId = localStorage.getItem('userId');
-        if (!userId) {
-            window.location.href = 'patient-login.html';
-        }
+        // Show verification form by default
+        document.getElementById('verificationForm').style.display = 'block';
+        document.getElementById('dashboardContent').style.display = 'none';
+
+        // Handle verification form submission
+        document.getElementById('accessForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            try {
+                const response = await fetch('http://localhost:5001/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store user data in localStorage
+                    localStorage.setItem('userId', data.userId);
+                    localStorage.setItem('userName', data.name);
+                    localStorage.setItem('userEmail', data.email);
+                    
+                    // Show dashboard content
+                    document.getElementById('verificationForm').style.display = 'none';
+                    document.getElementById('dashboardContent').style.display = 'block';
+                    
+                    // Fetch and display user data
+                    fetchUserData();
+                } else {
+                    alert(data.message || 'Access denied. Please check your credentials.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        });
 
         // Fetch user data
         async function fetchUserData() {
             try {
+                const userId = localStorage.getItem('userId');
                 const response = await fetch(`http://localhost:5001/api/user/${userId}`);
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Update profile information
+                    // Update personal information
                     document.getElementById('userName').textContent = data.name || 'Not provided';
                     document.getElementById('userEmail').textContent = data.email;
+                    document.getElementById('userPhone').textContent = data.phone || 'Not provided';
+                    document.getElementById('userAddress').textContent = data.address || 'Not provided';
+                    document.getElementById('userState').textContent = data.state || 'Not provided';
                     
-                    // Update medical history
-                    document.getElementById('pastConditions').textContent = data.pastConditions?.join(', ') || 'None';
-                    document.getElementById('allergies').textContent = data.allergies?.join(', ') || 'None';
-                    document.getElementById('medications').textContent = data.medications?.join(', ') || 'None';
+                    // Update medical information
+                    document.getElementById('userBloodType').textContent = data.bloodType || 'Not provided';
+                    document.getElementById('userChronicConditions').textContent = data.chronicConditions?.join(', ') || 'None';
+                    document.getElementById('userAllergies').textContent = data.allergies?.join(', ') || 'None';
+                    document.getElementById('userMedications').textContent = data.medications?.join(', ') || 'None';
+                    document.getElementById('userSurgeries').textContent = data.surgeries?.join(', ') || 'None';
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
         }
-
-        // Logout function
-        function logout() {
-            localStorage.removeItem('userId');
-            window.location.href = 'index.html';
-        }
-
-        // Fetch user data when page loads
-        fetchUserData();
     </script>
 </body>
 </html> 
